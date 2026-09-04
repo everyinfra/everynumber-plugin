@@ -1,0 +1,34 @@
+{
+  "repository": "everyinfra/everynumber-plugin",
+  "visibility": "public",
+  "publicationStatus": "authorized-initial-publication",
+  "plugin": "everynumber",
+  "skill": "everynumber",
+  "displayName": "EveryNumber",
+  "description": "EveryNumber phone-number activation and rental skill for Codex and Claude Code. REST catalog discovery, bounded code polling and explicit order settlement rules.",
+  "homepage": "https://everyinfra.com",
+  "topics": [
+    "everyinfra",
+    "agent-plugin",
+    "phone-number",
+    "sms-api",
+    "number-rental",
+    "agent-skill",
+    "rest-api",
+    "codex",
+    "claude-code",
+    "agent-skills"
+  ],
+  "searchIntent": "Phone-number activation and rental API workflow for agents",
+  "readmeTitle": "EveryNumber — Phone-number activation and rental with explicit order states",
+  "keywordResearch": "Qualitative intent mapping; no search volume, difficulty or ranking estimates.",
+  "transport": "rest",
+  "version": "0.1.0",
+  "source": {
+    "repository": "everyinfra/everyinfra-agent-plugins",
+    "commit": "78d3fd694244529e5062c51006fc10ef0de9dc87",
+    "path": "plugins/everyinfra/skills/everynumber/SKILL.md",
+    "sha256": "9a33182c5868d73506ec7a3b87bb0fa02c95156563f381cc52a5b3f13587c43a"
+  },
+  "definition": "EveryNumber is a standalone EveryInfra agent skill for authorized phone-number activation and rental through REST. It discovers current inventory, preserves order quotes, bounds code polling and distinguishes activation settlement from rental purchase."
+}

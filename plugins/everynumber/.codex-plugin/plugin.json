@@ -1,0 +1,49 @@
+{
+  "name": "everynumber",
+  "version": "0.1.0",
+  "description": "EveryNumber phone-number activation and rental skill for Codex and Claude Code. REST catalog discovery, bounded code polling and explicit order settlement rules.",
+  "author": {
+    "name": "EveryInfra",
+    "url": "https://everyinfra.com"
+  },
+  "homepage": "https://api.everyinfra.com/docs",
+  "repository": "https://github.com/everyinfra/everynumber-plugin",
+  "license": "Apache-2.0",
+  "keywords": [
+    "everyinfra",
+    "agent-plugin",
+    "phone-number",
+    "sms-api",
+    "number-rental",
+    "agent-skill",
+    "rest-api",
+    "codex",
+    "claude-code",
+    "agent-skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "EveryNumber",
+    "shortDescription": "Phone-number activation and rental with explicit order states",
+    "longDescription": "EveryNumber is a standalone EveryInfra agent skill for authorized phone-number activation and rental through REST. It discovers current inventory, preserves order quotes, bounds code polling and distinguishes activation settlement from rental purchase. Use it for an authorized phone-number workflow with a specified country and product or rental term. Handle codes as secrets and respect the target service’s rules; do not use the workflow for account abuse.",
+    "developerName": "EveryInfra",
+    "category": "Engineering",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://everyinfra.com",
+    "privacyPolicyURL": "https://everyinfra.com/privacy",
+    "termsOfServiceURL": "https://everyinfra.com/terms",
+    "brandColor": "#287A73",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg",
+    "logoDark": "./assets/logo-dark.svg",
+    "defaultPrompt": [
+      "Inspect current activation options for the country and product I name. Do not allocate a number.",
+      "Explain the price and settlement differences between this activation option and rental term before I choose.",
+      "For my existing authorized activation order, propose a bounded polling and unused-order cancellation plan. Do not print any received code."
+    ]
+  }
+}

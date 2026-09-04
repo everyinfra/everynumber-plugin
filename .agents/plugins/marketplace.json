@@ -1,0 +1,20 @@
+{
+  "name": "everynumber-plugin",
+  "interface": {
+    "displayName": "Everynumber Plugin"
+  },
+  "plugins": [
+    {
+      "name": "everynumber",
+      "source": {
+        "source": "local",
+        "path": "./plugins/everynumber"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "everynumber-plugin",
+  "owner": {
+    "name": "EveryInfra"
+  },
+  "plugins": [
+    {
+      "name": "everynumber",
+      "source": "./plugins/everynumber",
+      "description": "EveryNumber phone-number activation and rental skill for Codex and Claude Code. REST catalog discovery, bounded code polling and explicit order settlement rules."
+    }
+  ]
+}
