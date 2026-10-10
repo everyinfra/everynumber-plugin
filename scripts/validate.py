@@ -1,11 +1,40 @@
 #!/usr/bin/env python3
 """Offline structural checks only; no API, host installation or external writes."""
+import hashlib
 import json
 from pathlib import Path
 import re
 import sys
 from urllib.parse import unquote, urlsplit
 import xml.etree.ElementTree as ET
+
+
+# Public-text blocklist: SHA-256 digests of lowercase terms that must not appear in public files,
+# grouped by term length. Only digests are stored, so the terms themselves stay out of this repository.
+BLOCKED_TERM_SHA256 = {
+    2: {
+        'a9ab292ea9feecdcdfd3d6dfae632d35e27923892feb884ddb36502a9e89a67d',
+        'ffdee717a579b55163b17a158aec447545aef28d989f95f47b8b75be9aba07aa',
+    },
+    4: {
+        'a4826fa1e4036d285d76df148a9c9546e59910e1a95da8c4b9997598b4bfbbb6',
+        'ee5a80cd15c51ce659df498fde630ca98ac8a6217c47205820d2a1da76ef382b',
+    },
+    5: {'954f775230679543d69509c294e19c393d50202fce576bcad71ac6add7b819d7'},
+    6: {'cbea6fa89a1a56837ec0cdcf534980a4679c118c10ad2d64fe15532bd9e2f132'},
+    7: {'51bab7a8adba778797f9123a2c604d12cddbec1dfd7df3891cff9382a104e518'},
+    8: {'1581e27de87bffae0bd4d745cd7964e68528d7a83e2e4c259a782d275df6f558'},
+    11: {'25904dfbcd8696a81fa6d9d63c751857242455c9d0c3ac90bfb25d5ac6e47789'},
+    16: {'f962d695e3503521af2f1e619525cf425b7e4b989b7f5c4b870c968da46ee6a8'},
+    20: {'deeeccd8d0c3fc67d116eebd983e7533925456eb8cb098339035ae52e104348d'},
+}
+PUBLIC_TEXT_SUFFIXES = {'.md','.txt','.json','.yml','.yaml'}
+
+
+def has_blocked_term(text):
+    flat = re.sub(r'\s+', ' ', text.lower())
+    return any(hashlib.sha256(flat[i:i+size].encode()).hexdigest() in digests
+               for size, digests in BLOCKED_TERM_SHA256.items() for i in range(len(flat)-size+1))
 
 
 def validate(root):
@@ -108,7 +137,10 @@ def validate(root):
                 local=(path.parent/unquote(parsed.path)).resolve()
                 check(local.is_relative_to(root.resolve()) and local.exists(), f'{path.relative_to(root)}: broken local link {target}')
                 checked_links+=1
-            check(not re.search(r'omggrow|apify|tikhub|root-secrets|BEGIN (?:RSA |EC )?PRIVATE KEY',text,re.I), f'{path.relative_to(root)}: private or legacy terminology')
+        if path.suffix in PUBLIC_TEXT_SUFFIXES:
+            text=path.read_text()
+            check(not has_blocked_term(text), f'{path.relative_to(root)}: private or legacy terminology')
+            check(not re.search(r'root-secrets|BEGIN (?:RSA |EC )?PRIVATE KEY',text,re.I), f'{path.relative_to(root)}: secret material')
     check(not list(plugin.rglob('.mcp.json')) and not list(plugin.rglob('.app.json')), 'Unexpected automatic service registration')
     if errors:
         print('\n'.join('ERROR: '+e for e in errors),file=sys.stderr)
