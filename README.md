@@ -1,5 +1,8 @@
 # EveryNumber — Phone-number activation and rental with explicit order states
 
+<!-- rq223-banner -->
+<p align="center"><img alt="EveryNumber — Phone-number activation and rental with explicit order states" src="assets/banner-en.jpg" width="100%"></p>
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">

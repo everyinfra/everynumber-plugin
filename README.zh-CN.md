@@ -1,5 +1,8 @@
 # EveryNumber：号码激活与租赁
 
+<!-- rq223-banner -->
+<p align="center"><img alt="EveryNumber：号码激活与租赁，订单状态清楚" src="assets/banner-zh.jpg" width="100%"></p>
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">

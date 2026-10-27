@@ -1,5 +1,8 @@
 # EveryNumber — Activación y alquiler de números con estados de pedido explícitos
 
+<!-- rq223-banner -->
+<p align="center"><img alt="EveryNumber — Activación y alquiler de números con estados de pedido explícitos" src="assets/banner-es.jpg" width="100%"></p>
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
